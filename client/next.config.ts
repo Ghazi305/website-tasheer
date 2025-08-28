@@ -2,10 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  basePath: '/website-tasheer',
-  assetPrefix: '/website-tasheer/',
   images: {
-    unoptimized: true, // مهم لـ GitHub Pages
+    unoptimized: true,
   },
 };
 
