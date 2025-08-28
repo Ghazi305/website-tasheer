@@ -33,11 +33,11 @@ const Header = () => {
       {/* Desktop Navigation & Icons */}
       <div className="flex items-center space-x-8">
         <nav className="hidden md:flex space-x-8 text-gray-800 font-medium">
-          <Link href="/universities" className="hover:text-blue-500 transition-colors">الجامعات</Link>
-          <Link href="/courses" className="hover:text-blue-500 transition-colors">الدورات</Link>
-          <Link href="/language-centers" className="hover:text-blue-500 transition-colors">مراكز اللغة</Link>
-          <Link href="/blog" className="hover:text-blue-500 transition-colors">المدونة</Link>
-          <Link href="/contact" className="hover:text-blue-500 transition-colors">اتصل بنا</Link>
+          <Link href="/universities" className="text-gray-700 hover:text-blue-500 transition-colors">الجامعات</Link>
+          <Link href="/courses" className="text-gray-700 hover:text-blue-500 transition-colors">الدورات</Link>
+          <Link href="/language-centers" className="text-gray-700 hover:text-blue-500 transition-colors">مراكز اللغة</Link>
+          <Link href="/blog" className="text-gray-800 hover:text-blue-500 transition-colors">المدونة</Link>
+          <Link href="/contact" className="text-gray-700 hover:text-blue-500 transition-colors">اتصل بنا</Link>
         </nav>
 
         {/* Buttons */}

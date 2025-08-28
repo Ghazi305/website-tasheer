@@ -14,7 +14,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       <button onClick={onClose} className="self-end mb-8">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8 text-white"
+          className="h-8 w-8 text-gray-700"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -25,11 +25,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 
       {/* Navigation */}
       <nav className="flex flex-col items-center space-y-6 text-xl text-white font-medium">
-        <Link href="/universities" className="hover:text-blue-500">الجامعات</Link>
-        <Link href="/courses" className="hover:text-blue-500">الدورات</Link>
-        <Link href="/language-centers" className="hover:text-blue-500">مراكز اللغة</Link>
-        <Link href="/blog" className="hover:text-blue-500">المدونة</Link>
-        <Link href="/contact" className="hover:text-blue-500">اتصل بنا</Link>
+        <Link href="/universities" className="text-gray-700 hover:text-blue-500">الجامعات</Link>
+        <Link href="/courses" className="text-gray-700 hover:text-blue-500">الدورات</Link>
+        <Link href="/language-centers" className="text-gray-700 hover:text-blue-500">مراكز اللغة</Link>
+        <Link href="/blog" className="text-gray-700 hover:text-blue-500">المدونة</Link>
+        <Link href="/contact" className="text-gray-700 hover:text-blue-500">اتصل بنا</Link>
       </nav>
 
       {/* Currency Selector */}
@@ -41,10 +41,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 
       {/* Social Icons */}
       <div className="mt-8 flex space-x-6 text-2xl">
-        <a href="#" aria-label="لينكدإن" className="text-white hover:text-blue-500"><FaLinkedin /></a>
-        <a href="#" aria-label="تيك توك" className="text-white hover:text-blue-500"><FaTiktok /></a>
-        <a href="#" aria-label="انستغرام" className="text-white hover:text-blue-500"><FaInstagram /></a>
-        <a href="#" aria-label="يوتيوب" className="text-white hover:text-blue-500"><FaYoutube /></a>
+        <a href="#" aria-label="لينكدإن" className="text-gray-700 hover:text-blue-500"><FaLinkedin /></a>
+        <a href="#" aria-label="تيك توك" className="text-gray-700 hover:text-blue-500"><FaTiktok /></a>
+        <a href="#" aria-label="انستغرام" className="text-gray-700 hover:text-blue-500"><FaInstagram /></a>
+        <a href="#" aria-label="يوتيوب" className="text-gray-700 hover:text-blue-500"><FaYoutube /></a>
       </div>
 
       {/* Footer Text */}
