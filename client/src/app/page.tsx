@@ -34,7 +34,7 @@ const englishStudySection = {
 };
 
   return (
-    <div className="font-sans items-center justify-items-center min-h-screen p-0">
+    <div>
       <Header />
       <HeroSection />
       <ProcessSection />

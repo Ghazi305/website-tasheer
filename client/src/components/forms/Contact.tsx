@@ -1,100 +1,146 @@
-// components/Contact.tsx
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { FaTimesCircle } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
 
-const Contact = () => {
+function Contact() {
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    contactNumber: '',
-    message: '',
+    fullName: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({ ...prevState, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      console.log(formData);
+      alert("تم إرسال الرسالة بنجاح");
+      setFormData({ fullName: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Error: ", error);
+      alert("فشل في إرسال الرسالة");
+    }
   };
 
   return (
-    <section className="bg-gray-50 py-16 md:py-24">
-      <div className="container mx-auto px-4 md:px-12">
-        <div className="bg-white p-6 md:p-12 rounded-3xl shadow-lg border border-gray-200">
-          <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4">
-              لا تعرف من أين تبدأ؟
-            </h2>
-            <p className="text-gray-600 mb-8">
-              أرسل لنا رسالة الآن ودعنا نساعدك في العثور على جامعتك التي تحلم بها في ماليزيا!
-            </p>
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24" dir="rtl">
+      <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-start">
+        {/* Left Side: Contact Info */}
+        <div className="space-y-10 mb-12 lg:mb-0">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">تواصل معنا</h2>
+          <p className="text-gray-500 text-lg md:text-xl">
+            إذا كان لديك أي أسئلة حول خدماتنا أو تحتاج للمساعدة، يمكنك التواصل معنا عبر أي من الوسائل التالية.
+          </p>
+
+          <div className="space-y-6">
+            <div className="flex items-start gap-4 hover:bg-blue-50 transition p-4 rounded-xl">
+              <div className="flex-shrink-0 bg-blue-100 p-4 rounded-full flex items-center justify-center">
+                <MapPin className="text-blue-500 text-2xl" />
+              </div>
+              <div className="text-right">
+                <h3 className="text-lg font-semibold text-gray-900">العنوان</h3>
+                <p className="text-gray-500 text-sm"><br/>ماليزيا - جوهور</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 hover:bg-blue-50 transition p-4 rounded-xl">
+              <div className="flex-shrink-0 bg-blue-100 p-4 rounded-full flex items-center justify-center">
+                <Phone className="text-blue-500 text-2xl" />
+              </div>
+              <div className="text-right">
+                <h3 className="text-lg font-semibold text-gray-900">الهاتف</h3>
+                <p className="text-gray-500 text-sm">+60136969570<br/>الإثنين-الجمعة 9ص - 5م</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 hover:bg-blue-50 transition p-4 rounded-xl">
+              <div className="flex-shrink-0 bg-blue-100 p-4 rounded-full flex items-center justify-center">
+                <Mail className="text-blue-500 text-2xl" />
+              </div>
+              <div className="text-right">
+                <h3 className="text-lg font-semibold text-gray-900">البريد الإلكتروني</h3>
+                <p className="text-gray-500 text-sm">tasheer.edu@gmail.com<br/>نرد عادة خلال 24 ساعة</p>
+              </div>
+            </div>
           </div>
-          
-          <form className="max-w-2xl mx-auto space-y-6">
-            <div className="relative">
+
+          <div className="mt-8">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">تابعنا على</h3>
+            <div className="flex justify-end gap-3">
+              <a href="#" className="bg-blue-100 hover:bg-blue-200 text-blue-500 p-3 rounded-full transition"><Facebook /></a>
+              <a href="#" className="bg-blue-100 hover:bg-blue-200 text-blue-500 p-3 rounded-full transition"><Twitter /></a>
+              <a href="#" className="bg-blue-100 hover:bg-blue-200 text-blue-500 p-3 rounded-full transition"><Instagram /></a>
+              <a href="#" className="bg-blue-100 hover:bg-blue-200 text-blue-500 p-3 rounded-full transition"><Linkedin /></a>
+              <a href="#" className="bg-blue-100 hover:bg-blue-200 text-blue-500 p-3 rounded-full transition"><Youtube /></a>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side: Contact Form */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">أرسل لنا رسالة</h3>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
               <input
                 type="text"
                 name="fullName"
-                placeholder="أدخل اسمك الكامل"
-                className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={formData.fullName}
                 onChange={handleChange}
+                placeholder="الاسم الكامل"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
               />
-              <button type="button" className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
-                <FaTimesCircle />
-              </button>
             </div>
-
-            <div className="relative">
+            <div>
               <input
                 type="email"
                 name="email"
-                placeholder="أدخل عنوان بريدك الإلكتروني"
-                className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={formData.email}
                 onChange={handleChange}
+                placeholder="البريد الإلكتروني"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
               />
-              <button type="button" className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
-                <FaTimesCircle />
-              </button>
             </div>
-
-            <div className="relative">
+            <div>
               <input
-                type="tel"
-                name="contactNumber"
-                placeholder="أدخل رقم الاتصال"
-                className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={formData.contactNumber}
+                type="text"
+                name="subject"
+                value={formData.subject}
                 onChange={handleChange}
+                placeholder="الموضوع"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
               />
             </div>
-
-            <div className="relative">
+            <div>
               <textarea
                 name="message"
-                placeholder="أخبرنا بما تحتاج للمساعدة فيه"
-                rows={5}
-                className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={formData.message}
                 onChange={handleChange}
-              ></textarea>
+                placeholder="رسالتك"
+                rows={5}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
             </div>
-
-            <div className="flex justify-center">
-              <button
-                type="submit"
-                className="bg-blue-500 text-gray-800 font-semibold py-3 px-12 rounded-lg hover:bg-blue-600 transition-colors shadow-md"
-              >
-                إرسال
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-500 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold text-lg transition"
+            >
+              إرسال الرسالة
+            </button>
           </form>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default Contact;

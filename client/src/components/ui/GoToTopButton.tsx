@@ -2,18 +2,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-
-// SVG icon for the up-arrow
-const ArrowUpIcon = () => (
-    <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="currentColor" 
-        className="w-6 h-6 text-white"
-    >
-        <path d="M12 4L6 10H9V20H15V10H18L12 4Z" />
-    </svg>
-);
+import { FaArrowUp } from "react-icons/fa";
 
 const GoToTopButton = () => {
     // State to track whether the button should be visible
@@ -48,7 +37,7 @@ const GoToTopButton = () => {
         <button
             onClick={scrollToTop}
             className={`
-                fixed bottom-8 left-8 p-3 bg-blue-500 text-white rounded-full 
+                fixed bottom-8 right-2 p-3 bg-blue-500 text-white rounded-full 
                 shadow-lg transition-opacity duration-300 z-50
                 hover:bg-blue-600
                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
@@ -56,7 +45,7 @@ const GoToTopButton = () => {
             `}
             aria-label="Go to top"
         >
-            <ArrowUpIcon />
+            <FaArrowUp />
         </button>
     );
 };

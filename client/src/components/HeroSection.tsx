@@ -1,76 +1,72 @@
 // components/HeroSection.tsx
 import Image from 'next/image';
 import { FaChevronDown, FaSearch } from 'react-icons/fa';
-import studentImage  from '../assets/images/graduating-student.jpg';
+import studentImage from '../assets/images/graduating-student.png';
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full bg-gradient-to-br from-gray-900 to-gray-700 min-h-[600px] flex items-center justify-center py-16 px-4 overflow-hidden">
-      {/* Background elements - You might replace these with actual background images or patterns */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-10">
-        <span className="absolute text-8xl font-extrabold text-gray-400 opacity-20 top-10 left-10 transform -rotate-12">جامعتك</span>
-        <span className="absolute text-7xl font-extrabold text-gray-500 opacity-20 bottom-20 right-20 transform rotate-6">جامعتك</span>
-        <span className="absolute text-9xl font-extrabold text-gray-600 opacity-20 top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 rotate-3">جامعتك</span>
+    <section className="relative w-full bg-gradient-to-br from-blue-900 to-blue-700 min-h-[700px] flex items-center justify-center overflow-hidden p-4">
+      {/* Background abstract shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute bg-white/10 rounded-full h-64 w-64 top-10 left-10 animate-pulse"></div>
+        <div className="absolute bg-white/10 rounded-full h-80 w-80 bottom-20 right-20 animate-pulse"></div>
+        <div className="absolute bg-white/5 rounded-full h-96 w-96 top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 p-4">
-        {/* Content Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 lg:w-3/5 xl:w-1/2 flex flex-col justify-center min-h-[400px]">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight mb-4">
+      <div className="relative z-10 container mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-12">
+        {/* Left Content */}
+        <div className="flex-1 flex flex-col justify-center text-center lg:text-left">
+          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
             إرشاد الخبراء
             <br />
-            <span className="bg-blue-500 text-white px-2 py-1 rounded-md inline-block mt-2">للطلاب الدوليين</span>
+            <span className="bg-blue-500 text-white px-3 py-1 rounded-lg inline-block mt-2">
+              للطلاب الدوليين
+            </span>
             <br />
             في ماليزيا
-          </h2>
-          <p className="text-gray-600 text-lg mb-8 max-w-md">
-            جعلنا البحث عن الجامعات الماليزية والتقديم إليها أسهل.
+          </h1>
+          <p className="text-white/80 text-lg md:text-xl mb-8 max-w-lg mx-auto lg:mx-0">
+            جعلنا البحث عن الجامعات الماليزية والتقديم إليها أسهل وأكثر مرونة
           </p>
 
-          {/* Search Input Group */}
-          <div className="flex flex-col sm:flex-row bg-gray-100 rounded-xl p-2 space-y-3 sm:space-y-0 sm:space-x-3 border border-gray-200 shadow-inner">
-            <div className="flex-shrink-0 relative">
-              <select
-                className="appearance-none bg-white border border-gray-300 rounded-lg py-3 px-4 pr-10 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all cursor-pointer"
-              >
+          {/* Search Card */}
+          <div className="flex flex-col sm:flex-row bg-white rounded-2xl shadow-lg p-3 sm:p-4 gap-3 sm:gap-4 border border-gray-200">
+            <div className="relative flex-shrink-0 w-full sm:w-48">
+              <select className="appearance-none w-full py-3 px-4 pr-10 rounded-xl border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
                 <option>الجامعة</option>
                 <option>الدورة</option>
                 <option>مركز اللغة</option>
               </select>
-              <FaChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none" />
+              <FaChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
             </div>
             <input
               type="text"
               placeholder="مثال: هندسة، محاسبة، إلخ."
-              className="flex-grow bg-white border border-gray-300 rounded-lg py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              className="flex-grow py-3 px-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             />
-            <button className="flex-shrink-0 bg-black text-white p-4 rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center">
-              <FaSearch className="text-xl" />
+            <button className="bg-blue-500 text-white p-3 rounded-xl hover:bg-blue-400 transition flex items-center justify-center">
+              <FaSearch className="text-lg" />
             </button>
           </div>
         </div>
 
-        {/* Image of Graduate Student */}
-        <div className="relative w-full lg:w-2/5 xl:w-1/2 h-[450px] md:h-[500px] lg:h-[600px] mt-8 lg:mt-0">
-          <div className="absolute inset-0 bg-blue-400 rounded-2xl transform rotate-3 scale-105 opacity-30 blur-lg hidden lg:block"></div> {/* Subtle background blur */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-700 to-gray-800 rounded-2xl transform rotate-2 scale-105 hidden lg:block"></div> {/* Second background layer */}
-
-          <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+        {/* Right Image */}
+        <div className="flex-1 w-full relative">
+          <div className="relative w-full h-64 sm:h-96 md:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
             <Image
-              src={studentImage} // استبدل بمسار صورتك الحقيقية
+              src={studentImage}
               alt="طالب دولي متخرج مبتسم"
               layout="fill"
               objectFit="cover"
-              className="rounded-2xl"
+              className="rounded-3xl"
             />
-              {/* Small white circle overlay elements */}
-            <div className="absolute top-10 left-10 bg-white opacity-20 rounded-full h-8 w-8"></div>
-            <div className="absolute bottom-1/4 right-5 bg-white opacity-20 rounded-full h-12 w-12"></div>
-            <div className="absolute top-1/3 right-1/4 bg-white opacity-20 rounded-full h-6 w-6"></div>
-
-            {/* Floating chat icon and text */}
+            {/* Floating shapes */}
+            <div className="absolute top-8 left-8 bg-white/20 rounded-full h-6 w-6 animate-ping"></div>
+            <div className="absolute bottom-16 right-12 bg-white/20 rounded-full h-12 w-12 animate-ping"></div>
+            <div className="absolute top-1/3 right-1/4 bg-white/20 rounded-full h-8 w-8 animate-ping"></div>
           </div>
         </div>
+
       </div>
     </section>
   );

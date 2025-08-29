@@ -41,10 +41,10 @@ const Header = () => {
         </nav>
 
         {/* Buttons */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           {/* Search Button */}
           <button aria-label="بحث" className="text-gray-800 hover:text-blue-500" onClick={toggleSearchOverlay}>
-            <FaSearch size={20} />
+            <FaSearch size={18} />
           </button>
           
           {/* Mobile Menu Button */}
@@ -53,7 +53,7 @@ const Header = () => {
             className="md:hidden text-gray-800 hover:text-blue-500"
             onClick={toggleMenu}
           >
-            {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
         </div>
       </div>
