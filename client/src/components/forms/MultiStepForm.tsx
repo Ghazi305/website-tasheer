@@ -146,12 +146,24 @@ const MultiStepForm = () => {
         return (
           <div className="space-y-4">
             <div className="flex justify-between items-center border p-4 rounded-lg">
-              <span>شهادة الثانوية العامة</span>
-              <button className="border px-4 py-2 rounded-lg hover:bg-gray-100">اختر ملف</button>
+              <InputField 
+                label="الشهادة"
+                name="guardianPhone"
+                value={formData.guardianPhone}
+                onChange={handleChange}
+                type="file"
+                placeholder="الشهادة"
+              />  
             </div>
             <div className="flex justify-between items-center border p-4 rounded-lg">
-              <span>صورة شخصية</span>
-              <button className="border px-4 py-2 rounded-lg hover:bg-gray-100">اختر ملف</button>
+              <InputField 
+                label="الصورة الشخصية"
+                name="guardianPhone"
+                value={formData.guardianPhone}
+                onChange={handleChange}
+                type="file"
+                placeholder="الصورة الشخصية"
+              />    
             </div>
             <div className="flex items-center mt-4">
               <input type="checkbox" id="terms" className="mr-2" />
@@ -165,10 +177,10 @@ const MultiStepForm = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 text-center">
       <div className="max-w-5xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-lg">
         {universityName && (
-          <div className="mb-8 p-6 border text-right border-gray-200 rounded-3xl bg-blue-50 flex flex-col md:flex-row items-center gap-6 shadow-lg">
+          <div className="mb-8 p-6 border border-gray-200 rounded-3xl bg-blue-50 flex flex-col md:flex-row items-center gap-6 shadow-lg">
             {searchParams.get('logo') && (
               <div className="w-28 h-28 relative flex-shrink-0 bg-white p-2 rounded-xl shadow-sm">
                 <img
@@ -192,7 +204,7 @@ const MultiStepForm = () => {
 
         <div className="flex items-center justify-between mb-8">
           {steps.map((step, index) => (
-            <div key={step.id} className="flex items-center flex-1">
+            <div key={step.id} className="flex flex-col items-center flex-1">
               <div
                 className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
                   step.isComplete
@@ -202,12 +214,37 @@ const MultiStepForm = () => {
                     : 'border-gray-300'
                 }`}
               >
-                {step.isComplete ? <FaCheck className="text-white" /> : <span className={step.isActive ? 'text-blue-500' : 'text-gray-500'}>{step.id}</span>}
+                {step.isComplete ? (
+                  <FaCheck className="text-white" />
+                ) : (
+                  <span
+                    className={
+                      step.isActive ? 'text-blue-500 font-bold' : 'text-gray-500'
+                    }
+                  >
+                    {step.id}
+                  </span>
+                )}
               </div>
-              {index < steps.length - 1 && <div className={`flex-auto h-1 ${step.isComplete ? 'bg-blue-500' : 'bg-gray-300'}`}></div>}
+
+              {/* 👇 اسم الخطوة */}
+              <span
+                className={`mt-2 text-sm text-center ${
+                  step.isActive ? 'text-blue-600 font-medium' : 'text-gray-500'
+                }`}
+              >
+                {step.name}
+              </span>
+
+              {index < steps.length - 1 && (
+                <div
+                  className={`flex-auto h-1 ${step.isComplete ? 'bg-blue-500' : 'bg-gray-300'}`}
+                ></div>
+              )}
             </div>
           ))}
         </div>
+
 
         <form onSubmit={(e) => { e.preventDefault(); handleNextStep(); }}>
           {renderFormContent()}
