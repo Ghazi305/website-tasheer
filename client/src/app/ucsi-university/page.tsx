@@ -1,3 +1,5 @@
+'use client';
+
 import Footer from "@/components/Footer";
 import MultiStepForm from "@/components/forms/MultiStepForm";
 import Header from "@/components/Header";
