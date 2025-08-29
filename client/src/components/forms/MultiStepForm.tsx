@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { useSearchParams } from 'next/navigation';
 import InputField from '@/components/ui/InputField';
-import SelectField from '@/components/ui/SelectField';
+// import SelectField from '@/components/ui/SelectField';
+import dynamic from 'next/dynamic';
+
+const SelectField = dynamic(() => import('@/components/ui/SelectField'), { ssr: false });
+
 
 interface Step {
   id: number;
@@ -164,7 +168,7 @@ const MultiStepForm = () => {
     <section className="py-16 bg-gray-50">
       <div className="max-w-5xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-lg">
         {universityName && (
-          <div className="mb-8 p-6 border border-gray-200 rounded-3xl bg-blue-50 flex flex-col md:flex-row items-center gap-6 shadow-lg">
+          <div className="mb-8 p-6 border text-right border-gray-200 rounded-3xl bg-blue-50 flex flex-col md:flex-row items-center gap-6 shadow-lg">
             {searchParams.get('logo') && (
               <div className="w-28 h-28 relative flex-shrink-0 bg-white p-2 rounded-xl shadow-sm">
                 <img
