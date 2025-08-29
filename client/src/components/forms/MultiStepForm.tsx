@@ -31,6 +31,25 @@ const MultiStepForm = () => {
   const duration = searchParams.get('duration') || '';
   const intake = searchParams.get('intake') || '';
 
+  // الحالة لكل الحقول
+  const [formData, setFormData] = useState({
+    fullName: '',
+    nationality: '',
+    email: '',
+    phone: '',
+    preferredCourse: '',
+    guardianName: '',
+    guardianPhone: '',
+  });
+
+  const handleChange = (e: { target: { name: string; value: string } }) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSelectChange = (field: keyof typeof formData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
   const handleNextStep = () => {
     if (currentStep < steps.length) {
       setSteps(prev =>
@@ -62,28 +81,73 @@ const MultiStepForm = () => {
       case 1:
         return (
           <div className="grid gap-6 md:grid-cols-2">
-            <InputField label="الاسم الكامل" placeholder="أدخل اسمك الكامل" />
-            <SelectField label="الجنسية" options={['دولة أ', 'دولة ب']} />
-            <InputField label="البريد الإلكتروني" type="email" placeholder="أدخل بريدك الإلكتروني" />
-            <InputField label="رقم الهاتف" type="tel" placeholder="أدخل رقم الاتصال" />
-            <SelectField label="البرنامج الدراسي المفضل" options={['هندسة', 'إدارة أعمال']} />
+            <InputField
+              label="الاسم الكامل"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              placeholder="أدخل اسمك الكامل"
+            />
+            <SelectField
+              label="الجنسية"
+              options={['دولة أ', 'دولة ب', 'دولة ج']}
+              value={formData.nationality}
+              onChange={(val) => handleSelectChange('nationality', val)}
+            />
+            <InputField
+              label="البريد الإلكتروني"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              type="email"
+              placeholder="أدخل بريدك الإلكتروني"
+            />
+            <InputField
+              label="رقم الاتصال"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              type="tel"
+              placeholder="أدخل رقم الاتصال"
+            />
+            <SelectField
+              label="البرنامج الدراسي المفضل"
+              options={['هندسة', 'إدارة أعمال', 'علوم الحاسوب']}
+              value={formData.preferredCourse}
+              onChange={(val) => handleSelectChange('preferredCourse', val)}
+            />
           </div>
         );
       case 2:
         return (
           <div className="grid gap-6 md:grid-cols-2">
-            <InputField label="اسم ولي الأمر" placeholder="أدخل اسم ولي الأمر" />
-            <InputField label="رقم هاتف ولي الأمر" type="tel" placeholder="أدخل رقم الهاتف" />
+            <InputField
+              label="اسم ولي الأمر"
+              name="guardianName"
+              value={formData.guardianName}
+              onChange={handleChange}
+              placeholder="أدخل اسم ولي الأمر"
+            />
+            <InputField
+              label="رقم الهاتف"
+              name="guardianPhone"
+              value={formData.guardianPhone}
+              onChange={handleChange}
+              type="tel"
+              placeholder="رقم ولي الأمر"
+            />
           </div>
         );
       case 3:
         return (
           <div className="space-y-4">
             <div className="flex justify-between items-center border p-4 rounded-lg">
-               <InputField type='file' label="الشهادة الثانوية" placeholder="اختر ملف" />
+              <span>شهادة الثانوية العامة</span>
+              <button className="border px-4 py-2 rounded-lg hover:bg-gray-100">اختر ملف</button>
             </div>
             <div className="flex justify-between items-center border p-4 rounded-lg">
-               <InputField type='file' label="الصورة الشخصية" placeholder="اختر ملف" />
+              <span>صورة شخصية</span>
+              <button className="border px-4 py-2 rounded-lg hover:bg-gray-100">اختر ملف</button>
             </div>
             <div className="flex items-center mt-4">
               <input type="checkbox" id="terms" className="mr-2" />
@@ -99,7 +163,6 @@ const MultiStepForm = () => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-5xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-lg">
-        {/* معلومات الجامعة */}
         {universityName && (
           <div className="mb-8 p-6 border border-gray-200 rounded-3xl bg-blue-50 flex flex-col md:flex-row items-center gap-6 shadow-lg">
             {searchParams.get('logo') && (
@@ -123,7 +186,6 @@ const MultiStepForm = () => {
           </div>
         )}
 
-        {/* شريط التقدم */}
         <div className="flex items-center justify-between mb-8">
           {steps.map((step, index) => (
             <div key={step.id} className="flex items-center flex-1">
@@ -143,7 +205,6 @@ const MultiStepForm = () => {
           ))}
         </div>
 
-        {/* النموذج */}
         <form onSubmit={(e) => { e.preventDefault(); handleNextStep(); }}>
           {renderFormContent()}
           <div className="mt-8 flex justify-between">
