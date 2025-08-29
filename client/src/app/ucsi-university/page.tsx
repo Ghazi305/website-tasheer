@@ -1,14 +1,17 @@
-import dynamic from 'next/dynamic';
+"use client";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-const MultiStepForm = dynamic(() => import('@/components/forms/MultiStepForm'), { ssr: false });
+import MultiStepForm from "@/components/forms/MultiStepForm";
+import { Suspense } from "react";
 
 export default function UniversitiesPage() {
   return (
     <>
       <Header />
-      <MultiStepForm />
+      <Suspense fallback={<div>Loading form...</div>}>
+        <MultiStepForm />
+      </Suspense>
       <Footer />
     </>
   );
