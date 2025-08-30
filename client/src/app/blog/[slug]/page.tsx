@@ -9,14 +9,13 @@ interface Params {
   slug: string;
 }
 
-// توليد جميع المسارات عند البناء (SSG)
+// توليد كل المسارات عند البناء (SSG)
 export async function generateStaticParams() {
   return blogPosts.map(post => ({ slug: post.slug }));
 }
 
 export default function BlogPostPage({ params }: { params: Params }) {
-  const { slug } = params;
-  const post = blogPosts.find(p => p.slug === slug);
+  const post = blogPosts.find(p => p.slug === params.slug);
 
   if (!post) {
     return (
