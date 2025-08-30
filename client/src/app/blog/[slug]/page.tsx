@@ -5,16 +5,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { blogPosts } from '@/data/blogPosts';
 
-interface BlogPostPageProps {
-  params: { slug: string };
-}
-
 // توليد جميع المسارات عند البناء
 export async function generateStaticParams() {
   return blogPosts.map(post => ({ slug: post.slug }));
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const post = blogPosts.find(p => p.slug === slug);
 
