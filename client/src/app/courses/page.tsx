@@ -67,12 +67,7 @@ export default function CoursesPage() {
   return (
     <div>
       <Header />
-      <ListingPage
-        pageTitle="الدورات"
-        totalItems={coursesData.length}
-        items={coursesData}
-        isCoursePage={true}
-      />
+      <ListingPage />
       <WhatsAppButton />
       <Footer />
     </div>

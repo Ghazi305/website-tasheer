@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image'
 import Link from 'next/link';
 import { FaBars, FaTimes, FaSearch } from 'react-icons/fa';
 import MobileMenu from './MobileMenu';
@@ -27,9 +28,18 @@ const Header = () => {
       dir="rtl"
     >
       {/* Logo */}
-      <Link href="/" className="font-extrabold text-2xl">
-        <span className="text-purple-600">وكالة تأشـير</span>
-      </Link>
+      <div className='flex flex-row items-center'>
+            <Link href={'/'}> 
+            <Image
+                className='rounded-full'
+                src="https://placehold.co/80X80"
+                alt="logo"
+                width={60}
+                height={60}
+            /> 
+            </Link>
+            logo
+        </div>
 
       {/* Desktop Navigation & Icons */}
       <div className="flex items-center gap-8">

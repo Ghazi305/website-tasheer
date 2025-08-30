@@ -177,7 +177,7 @@ const MultiStepForm = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50 text-center">
+    <section className="py-16 bg-gray-50">
       <div className="max-w-5xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-lg">
         {universityName && (
           <div className="mb-8 p-6 border border-gray-200 rounded-3xl bg-blue-50 flex flex-col md:flex-row items-center gap-6 shadow-lg">
@@ -190,7 +190,7 @@ const MultiStepForm = () => {
                 />
               </div>
             )}
-            <div className="flex-1 space-y-2 text-center md:text-left">
+            <div className="flex-1 space-y-2 md:text-right">
               <h2 className="text-2xl font-bold text-gray-800">تقديم لبرنامج دراسي بجامعة</h2>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-800">{universityName}</h2>
               {location && <p className="text-gray-700 text-sm md:text-base">📍 {location}</p>}

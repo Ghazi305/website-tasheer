@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaSearch, FaChevronDown, FaMapMarkerAlt } from 'react-icons/fa';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface University {
   name: string;
@@ -13,6 +13,7 @@ interface University {
   offer?: string;
   duration?: string;
   intake?: string;
+  level?: string;
 }
 
 const universitiesData: University[] = [
@@ -22,6 +23,7 @@ const universitiesData: University[] = [
     location: 'Selangor, Malaysia',
     offer: 'خطاب قبول مجاني',
     courseDetails: '76 دورة',
+    level: 'درجة البكالوريوس',
   },
   {
     name: 'UCSI University Malaysia',
@@ -29,6 +31,7 @@ const universitiesData: University[] = [
     location: 'Kuala Lumpur, Malaysia',
     offer: 'خطاب قبول مجاني',
     courseDetails: '154 دورة',
+    level: 'درجة الماجستير',
   },
   {
     name: "Taylor's University Malaysia",
@@ -36,21 +39,29 @@ const universitiesData: University[] = [
     location: 'Selangor, Malaysia',
     offer: 'خطاب قبول مجاني',
     courseDetails: '118 دورة',
+    level: 'درجة البكالوريوس',
   },
 ];
 
 const ListingPageWithSidebar = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [searchName, setSearchName] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedFee, setSelectedFee] = useState('');
 
+  // قراءة قيمة البحث من رابط الـ URL عند التحميل
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q) setSearchName(q);
+  }, [searchParams]);
+
   const filteredUniversities = universitiesData.filter(u => {
     return (
       (!searchName || u.name.toLowerCase().includes(searchName.toLowerCase())) &&
-      (!selectedLevel || selectedLevel === 'درجة البكالوريوس' || selectedLevel === 'درجة الماجستير') &&
+      (!selectedLevel || u.level === selectedLevel) &&
       (!selectedLocation || u.location?.includes(selectedLocation)) &&
       (!selectedFee || u.offer === selectedFee)
     );
@@ -95,11 +106,10 @@ const ListingPageWithSidebar = () => {
                   onChange={e => setSearchName(e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
               </div>
             </div>
 
-            {/* المستوى الدراسي */}
+            {/* بقية الفلاتر كما هي */}
             <div>
               <label htmlFor="level" className="block font-semibold mb-2">المستوى الدراسي</label>
               <div className="relative">
@@ -117,7 +127,6 @@ const ListingPageWithSidebar = () => {
               </div>
             </div>
 
-            {/* الموقع / الولاية */}
             <div>
               <label htmlFor="locations" className="block font-semibold mb-2">المواقع</label>
               <div className="relative">
@@ -135,7 +144,6 @@ const ListingPageWithSidebar = () => {
               </div>
             </div>
 
-            {/* رسوم خطاب القبول */}
             <div>
               <label htmlFor="fee-type" className="block font-semibold mb-2">رسوم خطاب القبول</label>
               <div className="relative">
@@ -154,7 +162,7 @@ const ListingPageWithSidebar = () => {
             </div>
           </div>
 
-          {/* Main Listing */}
+          {/* عرض الجامعات */}
           <div className="flex-grow space-y-6">
             <div className="flex items-center justify-between mb-6">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-800">الجامعات</h1>
