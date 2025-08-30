@@ -5,22 +5,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { blogPosts } from '@/data/blogPosts';
 
-interface BlogPostPageProps {
-  params: { slug: string };
+interface Params {
+  slug: string;
 }
 
-// توليد جميع المسارات عند البناء
+// توليد جميع المسارات عند البناء (SSG)
 export async function generateStaticParams() {
   return blogPosts.map(post => ({ slug: post.slug }));
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
+export default function BlogPostPage({ params }: { params: Params }) {
   const { slug } = params;
   const post = blogPosts.find(p => p.slug === slug);
 
   if (!post) {
     return (
-      <div>
+      <>
         <Header />
         <div className="container mx-auto px-4 md:px-12 py-12">
           <h1 className="text-3xl font-bold text-gray-800 mb-4">المقالة غير موجودة</h1>
@@ -28,12 +28,12 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
         <WhatsAppButton />
         <Footer />
-      </div>
+      </>
     );
   }
 
   return (
-    <div>
+    <>
       <Header />
       <div className="container mx-auto px-4 md:px-12 py-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-2">{post.title}</h1>
@@ -50,6 +50,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       </div>
       <WhatsAppButton />
       <Footer />
-    </div>
+    </>
   );
 }
